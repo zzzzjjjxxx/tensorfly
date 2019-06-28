@@ -15,3 +15,15 @@ y = tf.matmul(w, x_data)+b
 # 最小化方差
 loss = tf.reduce_mean(tf.square(y-y_data))
 optimizer = tf.train.GradientDescentOptimizer(0.5)
+train = optimizer.minimize
+# 初始化变量
+init = tf.initialize_all_variables()
+#启动图
+sess = tf.Session()
+sess.run(init)
+# 拟合平面
+for step in xrange(0, 201):
+sess.run(train)
+if step% 20 == 0:
+  print step,sess.run(W),sess.run(b)
+#得到最佳拟合结果 w：[[0.100 0.200]], b: [0.300]
